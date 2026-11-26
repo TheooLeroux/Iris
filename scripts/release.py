@@ -6,6 +6,7 @@ import json
 from pathlib import Path
 import re
 import zipfile
+from urllib.parse import quote
 
 
 def inspect_apk(path):
@@ -47,7 +48,7 @@ def manifest(apk, version, build, repository, notes):
     tag = f'v{version}+{build}'
     return {'version': version, 'build': build, 'size': apk.stat().st_size,
             'sha256': hashlib.sha256(apk.read_bytes()).hexdigest(),
-            'apk_url': f'https://github.com/{repository}/releases/download/{tag}/Iris-{version}.apk',
+            'apk_url': f'https://github.com/{repository}/releases/download/{quote(tag, safe="")}/Iris-{version}.apk',
             'notes': notes[:3000]}
 
 

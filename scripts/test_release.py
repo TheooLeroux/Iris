@@ -30,7 +30,7 @@ class DistributionTests(unittest.TestCase):
         self.assertEqual(data['size'], self.apk.stat().st_size)
         self.assertEqual(data['build'], 5)
         self.assertEqual(len(data['sha256']), 64)
-        self.assertIn('/v1.3.0+5/Iris-1.3.0.apk', data['apk_url'])
+        self.assertIn('/v1.3.0%2B5/Iris-1.3.0.apk', data['apk_url'])
 
     def test_personal_library_is_rejected_inside_nested_zip(self):
         self.build(library=[{'titre': 'Une lecture privée'}])
