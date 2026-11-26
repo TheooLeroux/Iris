@@ -20,6 +20,18 @@ android {
         jvmTarget = JavaVersion.VERSION_17.toString()
     }
 
+    val irisSigningStore = System.getenv("IRIS_ANDROID_KEYSTORE_FILE")
+    if (!irisSigningStore.isNullOrBlank()) {
+        signingConfigs {
+            create("irisRelease") {
+                storeFile = file(irisSigningStore)
+                storePassword = "android"
+                keyAlias = "androiddebugkey"
+                keyPassword = "android"
+            }
+        }
+    }
+
     defaultConfig {
         // TODO: Specify your own unique Application ID (https://developer.android.com/studio/build/application-id.html).
         applicationId = "fr.recolecture.entre_les_lignes"
@@ -34,9 +46,8 @@ android {
 
     buildTypes {
         release {
-            // TODO: Add your own signing config for the release build.
-            // Signing with the debug keys for now, so `flutter run --release` works.
-            signingConfig = signingConfigs.getByName("debug")
+            // Le CI doit utiliser exactement la clé de l'installation existante.
+            signingConfig = signingConfigs.getByName(if (irisSigningStore.isNullOrBlank()) "debug" else "irisRelease")
         }
     }
 }
