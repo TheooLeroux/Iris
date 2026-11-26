@@ -1,0 +1,30 @@
+# Le dépôt contient le code de l'app et de publication uniquement.
+/*
+!/.gitignore
+!/README.md
+!/.github/
+!/scripts/
+!/mobile/
+!/prototype/
+
+**/__pycache__/
+**/*.pyc
+**/*.log
+**/*.sqlite3
+**/*.db
+**/*.apk
+**/*.jks
+**/*.keystore
+**/.env*
+/mobile/data/
+/mobile/assets/library.json
+/mobile/assets/*.jpg
+/prototype/runtime/
+/prototype/*.jpg
+/prototype/verification.json
+/prototype/README.md
+/mobile/.idea/
+
+# Anciennes commandes de diagnostic, hors de la distribution.
+/prototype/verifier_api.py
+/prototype/verifier_prototype.py

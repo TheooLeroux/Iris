@@ -1,0 +1,4 @@
+Iris te propose désormais ses nouvelles versions directement dans l’app.
+Téléchargement avec progression et installation après confirmation Android.
+Le bouton « Rechercher une mise à jour » est aussi disponible dans les réglages.
+Ton historique, tes réglages et ta bibliothèque restent sur ton téléphone.
