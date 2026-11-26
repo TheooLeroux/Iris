@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'advice.dart' show adviceFilterLabel;
+import 'recommendation_title.dart';
 
 const _ink = Color(0xff302923);
 const _muted = Color(0xff73675e);
@@ -823,7 +824,7 @@ class _RecommendationDetailState extends State<_RecommendationDetail> {
         childrenPadding: const EdgeInsets.fromLTRB(14, 0, 14, 16),
         shape: const Border(),
         collapsedShape: const Border(),
-        title: Text(
+        title: RecommendationTitle(
           '${rec['work']['title']}',
           style: const TextStyle(
             fontSize: 15,

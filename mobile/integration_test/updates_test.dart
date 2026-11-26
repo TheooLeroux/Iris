@@ -11,8 +11,8 @@ void main() {
   ) async {
     final installed = await IrisUpdates.channel
         .invokeMapMethod<String, dynamic>('installed');
-      expect(installed!['build'], 6);
-      expect(installed['version'], '1.3.1');
+    expect(installed!['build'], 7);
+    expect(installed['version'], '1.3.2');
     final progress = await IrisUpdates.channel.invokeMapMethod<String, dynamic>(
       'progress',
     );
@@ -31,7 +31,7 @@ void main() {
       const MaterialApp(home: Scaffold(body: UpdateSettings())),
     );
     await tester.pumpAndSettle();
-      expect(find.textContaining('Iris 1.3.1'), findsOneWidget);
+    expect(find.textContaining('Iris 1.3.2'), findsOneWidget);
     expect(find.text('Rechercher une mise à jour'), findsOneWidget);
     expect(tester.takeException(), isNull);
   });

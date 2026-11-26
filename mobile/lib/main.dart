@@ -8,6 +8,7 @@ import 'sync.dart';
 import 'settings.dart';
 import 'mangatime.dart';
 import 'updates.dart';
+import 'recommendation_title.dart';
 
 void main() => runApp(const ReadingApp());
 
@@ -127,37 +128,43 @@ class _NotebookState extends State<Notebook> with WidgetsBindingObserver {
     builder: (context) => SafeArea(
       child: FractionallySizedBox(
         heightFactor: .8,
-        child: ListView(
-          padding: const EdgeInsets.all(20),
-          children: [
-            heading('Conseil de lecture'),
-            Text(result['message'] ?? ''),
-            for (final r in result['reservations'] ?? []) Text(r),
-            for (final rec
-                in result['recommendations'] ??
-                    (result['work'] == null ? [] : [result])) ...[
-              const Divider(),
-              heading(rec['work']['title']),
-              mangaTimeAction(rec['work'] as Map),
-              FutureBuilder<String?>(
-                future: server.cover(rec['work']['sources'] ?? []),
-                builder: (context, s) => s.data == null
-                    ? const SizedBox.shrink()
-                    : Align(
-                        alignment: Alignment.centerLeft,
-                        child: Image.network(
-                          s.data!,
-                          height: 145,
-                          errorBuilder: (_, e, st) => const SizedBox.shrink(),
-                        ),
-                      ),
-              ),
-              if (rec['fit'] == 'exploratory')
-                Text('Piste exploratoire · ${rec['exploration_reason']}'),
-              Text(rec['why_this'] ?? ''),
-              for (final note in rec['reservations'] ?? []) Text(note),
-            ],
-          ],
+        child: ScaffoldMessenger(
+          child: Scaffold(
+            backgroundColor: Colors.transparent,
+            body: ListView(
+              padding: const EdgeInsets.all(20),
+              children: [
+                heading('Conseil de lecture'),
+                Text(result['message'] ?? ''),
+                for (final r in result['reservations'] ?? []) Text(r),
+                for (final rec
+                    in result['recommendations'] ??
+                        (result['work'] == null ? [] : [result])) ...[
+                  const Divider(),
+                  RecommendationTitle(rec['work']['title'] as String),
+                  mangaTimeAction(rec['work'] as Map),
+                  FutureBuilder<String?>(
+                    future: server.cover(rec['work']['sources'] ?? []),
+                    builder: (context, s) => s.data == null
+                        ? const SizedBox.shrink()
+                        : Align(
+                            alignment: Alignment.centerLeft,
+                            child: Image.network(
+                              s.data!,
+                              height: 145,
+                              errorBuilder: (_, e, st) =>
+                                  const SizedBox.shrink(),
+                            ),
+                          ),
+                  ),
+                  if (rec['fit'] == 'exploratory')
+                    Text('Piste exploratoire · ${rec['exploration_reason']}'),
+                  Text(rec['why_this'] ?? ''),
+                  for (final note in rec['reservations'] ?? []) Text(note),
+                ],
+              ],
+            ),
+          ),
         ),
       ),
     ),

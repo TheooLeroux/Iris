@@ -1,4 +1,3 @@
-Correction du lien de téléchargement des mises à jour GitHub.
-Iris propose les nouvelles versions dans l’app, avec progression du téléchargement
-et installation après confirmation Android. Ton historique, tes réglages et ta
-bibliothèque restent sur ton téléphone.
+Un clic sur le titre d’une recommandation le copie dans le presse-papiers.
+Disponible dans les nouveaux conseils et dans le détail de l’historique,
+avec la confirmation « Titre copié ».
