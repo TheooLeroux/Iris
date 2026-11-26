@@ -1,3 +1,3 @@
-Un clic sur le titre d’une recommandation le copie dans le presse-papiers.
-Disponible dans les nouveaux conseils et dans le détail de l’historique,
-avec la confirmation « Titre copié ».
+Le bouton MangaTime est désormais placé en bas de chaque recommandation,
+après les explications et les sources, dans une zone d’action séparée.
+Le bouton occupe la largeur de la fiche, dans les nouveaux conseils et l’historique.

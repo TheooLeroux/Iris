@@ -142,7 +142,6 @@ class _NotebookState extends State<Notebook> with WidgetsBindingObserver {
                         (result['work'] == null ? [] : [result])) ...[
                   const Divider(),
                   RecommendationTitle(rec['work']['title'] as String),
-                  mangaTimeAction(rec['work'] as Map),
                   FutureBuilder<String?>(
                     future: server.cover(rec['work']['sources'] ?? []),
                     builder: (context, s) => s.data == null
@@ -161,6 +160,7 @@ class _NotebookState extends State<Notebook> with WidgetsBindingObserver {
                     Text('Piste exploratoire · ${rec['exploration_reason']}'),
                   Text(rec['why_this'] ?? ''),
                   for (final note in rec['reservations'] ?? []) Text(note),
+                  mangaTimeAction(rec['work'] as Map),
                 ],
               ],
             ),

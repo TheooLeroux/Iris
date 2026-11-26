@@ -837,8 +837,6 @@ class _RecommendationDetailState extends State<_RecommendationDetail> {
           style: const TextStyle(fontSize: 11, color: _muted),
         ),
         children: [
-          if (widget.recommendationActions != null)
-            widget.recommendationActions!(rec['work'] as Map),
           if (cover != null)
             FutureBuilder<String?>(
               future: cover,
@@ -903,6 +901,8 @@ class _RecommendationDetailState extends State<_RecommendationDetail> {
                     ),
               ],
             ),
+          if (widget.recommendationActions != null)
+            widget.recommendationActions!(rec['work'] as Map),
         ],
       ),
     );

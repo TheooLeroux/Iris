@@ -198,39 +198,58 @@ class _MangaTimeButtonState extends State<MangaTimeButton> {
         ? 'MangaTime · ${state['status']}'
         : 'Ajouter à mes à lire MangaTime';
     return Padding(
-      padding: const EdgeInsets.only(top: 12),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          OutlinedButton.icon(
-            onPressed: busy || (present && !removable && !uncertain)
-                ? null
-                : act,
-            icon: busy
-                ? const SizedBox(
-                    width: 16,
-                    height: 16,
-                    child: CircularProgressIndicator(strokeWidth: 2),
-                  )
-                : Icon(
-                    uncertain
-                        ? Icons.refresh
-                        : removable
-                        ? Icons.bookmark_remove_outlined
-                        : Icons.bookmark_add_outlined,
-                    size: 20,
-                  ),
-            label: Text(label),
-          ),
-          if (error != null)
-            Text(
-              error!,
-              style: TextStyle(
-                color: Theme.of(context).colorScheme.error,
-                fontSize: 12,
+      padding: const EdgeInsets.only(top: 16),
+      child: Container(
+        padding: const EdgeInsets.only(top: 16),
+        decoration: const BoxDecoration(
+          border: Border(top: BorderSide(color: Color(0xffe5ded3))),
+        ),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            OutlinedButton.icon(
+              style: OutlinedButton.styleFrom(
+                minimumSize: const Size(0, 48),
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 14,
+                  vertical: 12,
+                ),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(12),
+                ),
               ),
+              onPressed: busy || (present && !removable && !uncertain)
+                  ? null
+                  : act,
+              icon: busy
+                  ? const SizedBox(
+                      width: 16,
+                      height: 16,
+                      child: CircularProgressIndicator(strokeWidth: 2),
+                    )
+                  : Icon(
+                      uncertain
+                          ? Icons.refresh
+                          : removable
+                          ? Icons.bookmark_remove_outlined
+                          : Icons.bookmark_add_outlined,
+                      size: 20,
+                    ),
+              label: Text(label),
             ),
-        ],
+            if (error != null)
+              Padding(
+                padding: const EdgeInsets.only(top: 8),
+                child: Text(
+                  error!,
+                  style: TextStyle(
+                    color: Theme.of(context).colorScheme.error,
+                    fontSize: 12,
+                  ),
+                ),
+              ),
+          ],
+        ),
       ),
     );
   }
